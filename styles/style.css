@@ -1,0 +1,20 @@
+body {
+  background-color: #111111;
+}
+
+a {
+	color: #c4c4c4;
+}
+
+p, .previous_text {
+	color: #c4c4c4;
+}
+
+.previous_link {	
+  color: #e9cf76;
+}
+
+.company_link {	
+  color: #3387a2;
+}
+	
