@@ -11,137 +11,216 @@
       box-sizing: border-box;
     }
     
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    
     body {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 16px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 11px;
       line-height: 1.4;
-      background: #111111;
-      padding: 20px;
+      background: #ffffff;
+      color: #333333;
+      padding: 0;
+      margin: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
     
     .cv-container {
-      max-width: 800px;
+      max-width: 210mm;
+      min-height: 297mm;
       margin: 0 auto;
-      background: #1a1a1a;
-      border: 1px solid #333333;
-      padding: 30px;
+      background: #ffffff;
+      padding: 15mm 12mm;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     
     .cv-table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
     }
     
     .cv-table td {
-      border: 1px solid #333333;
-      padding: 15px;
       vertical-align: top;
+      padding: 0;
     }
     
     .left-column {
-      width: 25%;
-      background: #1f1f1f;
-    }
-    
-    .spacer-column {
-      width: 2%;
-      background: #0a0a0a;
+      width: 32%;
+      padding-right: 8px;
+      border-right: 2px solid #333333;
     }
     
     .right-column {
-      width: 48.5%;
+      width: 68%;
+      padding-left: 12px;
     }
     
-    /* Left column styles */
+    /* Name styling */
     .name {
-      font-size: 16px;
-      font-weight: bold;
-      color: #86d358;
-      margin-bottom: 15px;
-    }
-    
-    .section-title {
-      font-size: 14px;
-      color: #86d358;
-      margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
       text-transform: uppercase;
     }
     
+    /* Section titles */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #333333;
+      margin: 16px 0 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #333333;
+      padding-bottom: 4px;
+    }
+    
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+    
+    /* Left column content */
     .skill-item {
-      font-size: 14px;
-      color: #86d358;
-      margin: 3px 0;
+      font-size: 11px;
+      color: #333333;
+      margin: 4px 0;
+      line-height: 1.5;
     }
     
     .school-name {
-      font-size: 14px;
-      color: #86d358;
-      margin: 8px 0 3px 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: #333333;
+      margin: 8px 0 2px 0;
     }
     
     .school-details {
-      font-size: 12px;
-      color: #86d358;
+      font-size: 10px;
+      color: #666666;
       margin: 2px 0;
+      line-height: 1.4;
     }
     
     .contact-info {
-      font-size: 13px;
-      margin: 8px 0;
-      color: #666;
+      font-size: 10px;
+      margin: 6px 0;
+      color: #666666;
+      word-break: break-word;
     }
     
     .contact-info a {
-      color: #86d358;
+      color: #333333;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .contact-info a:hover {
       text-decoration: underline;
     }
     
     .spacer {
-      margin: 15px 0;
+      margin: 12px 0;
     }
     
     /* Right column styles */
     .experience-title {
-      font-size: 13px;
-      color: #ffffff;
-      background: #86d358;
-      padding: 5px 8px;
-      margin-bottom: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #333333;
+      margin: 0 0 12px 0;
       text-transform: uppercase;
-      font-weight: bold;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #333333;
+      padding-bottom: 4px;
     }
     
     .job-header {
-      font-size: 13px;
-      color: #ffffff;
-      background: #86d358;
-      padding: 4px 8px;
-      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 4px;
       display: flex;
       justify-content: space-between;
+      align-items: baseline;
+    }
+    
+    .company-name {
+      font-weight: 700;
+      color: #333333;
+    }
+    
+    .job-date {
+      font-weight: 500;
+      color: #666666;
+      font-size: 10px;
+      text-align: right;
     }
     
     .job-title {
-      font-size: 13px;
-      color: #ffffff;
-      background: #86d358;
-      padding: 4px 8px;
-      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #333333;
+      margin-bottom: 6px;
+      font-style: italic;
     }
     
     .job-details {
-      font-size: 13px;
-      color: #b7b7b7;
+      font-size: 10px;
+      color: #555555;
       line-height: 1.5;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     
     .job-details .arrow {
-      color: #ffffff;
+      color: #333333;
+      font-weight: 600;
+      margin-right: 4px;
     }
     
     .job-spacer {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
+    }
+    
+    /* Print styles */
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .cv-container {
+        box-shadow: none;
+        padding: 10mm 8mm;
+      }
+    }
+    
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .cv-container {
+        padding: 20px;
+        max-width: 100%;
+      }
+      .cv-table {
+        display: block;
+      }
+      .cv-table tr {
+        display: flex;
+        flex-direction: column;
+      }
+      .left-column, .right-column {
+        width: 100%;
+        border-right: none;
+        padding: 0;
+      }
+      .left-column {
+        border-bottom: 2px solid #333333;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
@@ -152,7 +231,7 @@
         <td class="left-column">
           <div class="name">Rauno Villberg</div>
           
-          <div class="section-title">Proficiencies:</div>
+          <div class="section-title">Proficiencies</div>
           <div class="skill-item">iOS & Swift</div>
           <div class="skill-item">Android & Kotlin</div>
           <div class="skill-item">Unity, C# & ECS</div>
@@ -161,31 +240,30 @@
           
           <div class="spacer"></div>
           
-          <div class="section-title">Education:</div>
+          <div class="section-title">Education</div>
           <div class="school-name">Eesti Infotehnoloogia Kolledž</div>
-          <div class="school-details">→ IT süsteemide Arendus</div>
+          <div class="school-details">IT süsteemide Arendus</div>
           <div class="school-details">2012 - 2013</div>
           <div class="school-details">Took courses on Java, algorithms, math, C#.</div>
           
           <div class="school-name">Jüri Gümnaasium</div>
-          <div class="school-details">→ 2000 - 2012</div>
+          <div class="school-details">2000 - 2012</div>
           
           <div class="spacer"></div>
           
+          <div class="section-title">Contact</div>
           <div class="contact-info">+372 53429210</div>
           <div class="contact-info"><a href="https://bit.ly/RVCV2020" target="_blank">bit.ly/RVCV2020</a></div>
           <div class="contact-info"><a href="mailto:raunovillberg@gmail.com">raunovillberg@gmail.com</a></div>
           <div class="contact-info"><a href="https://makingvideogam.es" target="_blank">makingvideogam.es</a></div>
         </td>
         
-        <td class="spacer-column"></td>
-        
         <td class="right-column">
           <div class="experience-title">Experience</div>
           
           <div class="job-header">
-            <span>ELISA EESTI</span>
-            <span>Oct 2023 - Present</span>
+            <span class="company-name">ELISA EESTI</span>
+            <span class="job-date">Oct 2023 - Present</span>
           </div>
           <div class="job-title">Senior Mobile Developer & Team Lead</div>
           <div class="job-details"><span class="arrow">→</span> Leading a team of 4, working on the mobile app of Elisa's TV / streaming / VOD product "Elisa Elamus" while contributing to both the Android and iOS apps myself.</div>
@@ -195,8 +273,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>GENETO</span>
-            <span>Dec 2020 - May 2023 • 2Y 5M</span>
+            <span class="company-name">GENETO</span>
+            <span class="job-date">Dec 2020 - May 2023 • 2Y 5M</span>
           </div>
           <div class="job-title">Senior Mobile Developer</div>
           <div class="job-details"><span class="arrow">→</span> Working on both the iOS and Android versions of Elustiil - https://www.elisa.ee/et/elustiil</div>
@@ -206,8 +284,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>GHOSTKOT GAMES</span>
-            <span>Oct 2016 - May 2021 • 5Y 5M</span>
+            <span class="company-name">GHOSTKNOT GAMES</span>
+            <span class="job-date">Oct 2016 - May 2021 • 5Y 5M</span>
           </div>
           <div class="job-title">Game Developer</div>
           <div class="job-details"><span class="arrow">→</span> Ghostknot Games is a trans-oceanic two-man team sacrificing their non-9-to-5 time to bring their dreams to life.</div>
@@ -218,8 +296,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>MONESE</span>
-            <span>Mar 2019 - Jun 2020 • 1Y 4M</span>
+            <span class="company-name">MONESE</span>
+            <span class="job-date">Mar 2019 - Jun 2020 • 1Y 4M</span>
           </div>
           <div class="job-title">iOS Developer</div>
           <div class="job-details"><span class="arrow">→</span> As part of the full-stack Cards team, I have helped deliver major features such as virtual and replacement cards to our customers.</div>
@@ -228,8 +306,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>CODEGLUE GAMES</span>
-            <span>Aug 2018 - Jan 2019 • 6M</span>
+            <span class="company-name">CODEGLUE GAMES</span>
+            <span class="job-date">Aug 2018 - Jan 2019 • 6M</span>
           </div>
           <div class="job-title">Game Programmer</div>
           <div class="job-details"><span class="arrow">→</span> A co-development project with Team17, where I worked on bugfixes and iOS-specific performance optimizations for The Escapists 2: Pocket Breakout and helped it across the finish line to success.</div>
@@ -237,8 +315,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>MOONCASCADE</span>
-            <span>Aug 2016 - Jul 2018 • 2Y</span>
+            <span class="company-name">MOONCASCADE</span>
+            <span class="job-date">Aug 2016 - Jul 2018 • 2Y</span>
           </div>
           <div class="job-title">Mobile Developer</div>
           <div class="job-details"><span class="arrow">→</span> I worked on a variety of apps for huge corporations, telecommunications companies, augmented reality work and projects for small start-ups - all the while using multiple different technology stacks - Android, iOS and Unity.</div>
@@ -246,8 +324,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>ESTONIAN DEFENCE FORCES</span>
-            <span>Jul 2015 - May 2016 • 11M</span>
+            <span class="company-name">ESTONIAN DEFENCE FORCES</span>
+            <span class="job-date">Jul 2015 - May 2016 • 11M</span>
           </div>
           <div class="job-title">Soldier (compulsory)</div>
           <div class="job-details"><span class="arrow">→</span> Mandatory service. Not directly relevant to development, but certainly helped for personal discipline and learning to cope in tough situations.</div>
@@ -255,8 +333,8 @@
           <div class="job-spacer"></div>
           
           <div class="job-header">
-            <span>RUBIKS DIGITAL</span>
-            <span>Aug 2013 - Jun 2015 • 1Y 11M</span>
+            <span class="company-name">RUBIKS DIGITAL</span>
+            <span class="job-date">Aug 2013 - Jun 2015 • 1Y 11M</span>
           </div>
           <div class="job-title">Android Developer</div>
           <div class="job-details"><span class="arrow">→</span> I worked on multiple Android apps & games for various clients from around the world, including projects that started off at Garage48 hackathons and I helped develop into proper, full-fledged apps and games.</div>
