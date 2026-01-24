@@ -1,20 +1,345 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #111111;
+  background: #111111;
+  color: #e4e4e7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+  padding: 2rem;
 }
 
-a {
-	color: #c4c4c4;
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-p, .previous_text {
-	color: #c4c4c4;
+/* Sections */
+section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  overflow: hidden;
 }
 
-.previous_link {	
-  color: #e9cf76;
+section > h2 {
+  padding: 1rem 2rem 0.5rem 2rem;
 }
 
-.company_link {	
-  color: #3387a2;
+section > .intro,
+section > .games-intro,
+section > .cv-links {
+  padding: 0 2rem 1rem 2rem;
 }
-	
+
+/* Side-by-side container */
+.current-profile-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.current-work, .profile-section {
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.current-profile-container section > h2 {
+  padding-top: 1rem;
+}
+
+section:nth-child(2) { animation-delay: 0.1s; }
+section:nth-child(3) { animation-delay: 0.2s; }
+.previous-section { animation-delay: 0.3s; }
+section:nth-child(5) { animation-delay: 0.4s; }
+
+.current-profile-container { animation-delay: 0.1s; }
+
+section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #f4f4f5;
+}
+
+section h2 .emoji {
+  font-size: 1.6rem;
+}
+
+/* Intro text */
+.intro {
+  font-size: 1.1rem;
+  color: #d4d4d8;
+  margin-bottom: 1rem;
+}
+
+.intro strong {
+  color: #a78bfa;
+}
+
+/* Work entries */
+.work-entry {
+  padding: 1.25rem 2rem;
+  margin-bottom: 0;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.work-entry:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.work-entry:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.work-entry:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+}
+
+.work-entry:last-child {
+  padding-bottom: 2rem;
+}
+
+.company-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.company-link {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.15rem;
+  transition: color 0.2s ease;
+}
+
+.company-link:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.work-separator {
+  display: none;
+}
+
+.work-period {
+  color: #71717a;
+  font-size: 0.95rem;
+}
+
+.work-period .present {
+  color: #22c55e;
+  font-weight: 500;
+}
+
+.work-role {
+  color: #d4d4d8;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.work-description {
+  color: #a1a1aa;
+  font-size: 0.95rem;
+}
+
+.work-description a {
+  color: #fbbf24;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.work-description a:hover {
+  color: #fcd34d;
+  text-decoration: underline;
+}
+
+/* Profile image */
+.profile-image {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.profile-image img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-image img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* CV links */
+.cv-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.cv-button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cv-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Games section */
+.games-intro {
+  color: #d4d4d8;
+  margin-bottom: 1.5rem;
+}
+
+.games-intro a {
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.games-intro a:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.game-embed {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a2e;
+  transition: transform 0.3s ease;
+}
+
+.game-embed:hover {
+  transform: translateY(-2px);
+}
+
+.game-embed iframe {
+  width: 100%;
+  display: block;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  section {
+    padding: 1.5rem;
+  }
+
+  .company-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .work-separator {
+    display: none;
+  }
+
+  .current-profile-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Footer Image */
+.footer-image {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.5s;
+}
+
+.footer-image img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.footer-signoff {
+  margin-top: 1rem;
+  color: #71717a;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .footer-image img {
+    max-width: 300px;
+  }
+}
+

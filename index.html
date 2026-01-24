@@ -2,153 +2,226 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rauno Villberg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rauno Villberg - Mobile Developer</title>
     <link href="styles/style.css" rel="stylesheet">
 </head>
 
 <body>
-<div>
-    <!--Short intro-->
-    <p>Hey friend-o!</p>
-    <p>Rauno (that's me!) is working on making this a proper homepage. Like a page, for your
-        home. Huh.</p>
-    <p>I've been getting paid to code since 2013. It's cool! Exciting! Glad to have found a profession such as this.<br>In my spare time: most likely out riding my bicycle(s).</p>
-
-    <!--Current thing-->
-    <div>
-        <br>
-        <img src="images/ongoing-work.gif" alt="Still, ongoing work">
-        <br>
-        <span class="previous_text">Currently working at:</span>
-        <p>
-            <a href="https://www.elisa.ee/" class="company_link">Elisa Eesti</a> (Oct 2023 - Present) as a Senior Mobile
-            Developer & Team Lead
-            - working on Elisa's TV / streaming / VOD product "Elisa Elamus"
+<div class="wrapper">
+    <!-- About -->
+    <section>
+        <h2>Howdy!</h2>
+        <p class="intro">
+            This is <strong>Rauno Villberg</strong>, writing to you from the past.
+            <br>But you are reading it <i>right now</i>.
+            <br>
+            <br>I've been getting paid to code since <strong>2013</strong>.
+            <br>Mostly native <strong>Android & iOS</strong> apps.
+            <br>Startups, scaleups, corpos; agencies & product companies.
+            <br>It's cool! Exciting! I'm grateful to have found a profession I genuinely enjoy.
+            <br>You get to solve puzzles and get paid for it? What'll they think of next??
         </p>
+        <p class="intro">
+            In my spare time, you'll find me in my hometown of Tallinn, Estonia; or more likely: out riding my bicycle(s).
+            <br>... or watching pro cycling.
+            <br>... or recovering from those bike rides :)
+        </p>
+    </section>
+
+    <!-- Current Work + Profile -->
+    <div class="current-profile-container">
+        <section class="current-work">
+            <h2>Currently working at</h2>
+            <div class="work-entry">
+                <div class="company-header">
+                    <a href="https://www.elisa.ee/" class="company-link">Elisa Eesti</a>
+                    <span class="work-separator">·</span>
+                    <span class="work-role">Senior Mobile Developer & Team Lead</span>
+                    <span class="work-separator">·</span>
+                    <span class="work-period">Oct 2023 - <span class="present">Present</span></span>
+                </div>
+                <p class="work-description">
+                    Working on Elisa's TV / streaming / VOD product <strong><a href="https://www.elisa.ee/et/eraklient/tv/tv-kodus/elisa-elamus">Elisa Elamus</a></strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <h2>That's Me!</h2>
+            <div class="profile-image">
+                <img src="images/rauno_lidl_trek.jpg" alt="Rauno Villberg">
+            </div>
+        </section>
     </div>
 
-    <!--Previous experience-->
-    <div>
-        <br>
-        <img src="images/ongoing-work.gif" alt="Still, ongoing work">
-        <br>
-        <span class="previous_text">Previously got paid to work at:</span>
+    <!-- Previous Experience -->
+    <section class="previous-section">
+        <h2>Previous experience</h2>
 
-        <p>
-            <a href="https://www.geneto.com/" class="company_link">Geneto</a> (Dec 2020 - May 2023)
-            - Senior Mobile Developer on both the
-            <a href="https://apps.apple.com/app/id1353943752" class="previous_link">iOS</a>
-            and
-            <a href="https://play.google.com/store/apps/details?id=ee.geneto.app" class="previous_link">Android</a>
-            versions of
-            <a href="https://www.elisa.ee/et/elustiil" class="previous_link">Elustiil.</a>
-        </p>
+        <div class="work-entry">
+            <div class="company-header">
+                <a href="https://www.geneto.com/" class="company-link">Geneto</a>
+                <span class="work-separator">·</span>
+                <span class="work-role">Senior Mobile Developer</span>
+                <span class="work-separator">·</span>
+                <span class="work-period">Dec 2020 - May 2023</span>
+            </div>
+            <p class="work-description">
+                Worked on both the
+                <a href="https://apps.apple.com/app/id1353943752">iOS</a>
+                and
+                <a href="https://play.google.com/store/apps/details?id=ee.geneto.app">Android</a>
+                versions of
+                <a href="https://www.elisa.ee/et/elustiil">Elustiil</a>.
+            </p>
+        </div>
 
-        <p>
-            <a href="https://monese.com/" class="company_link">Monese</a> (Mar 2019 - Jun 2020)
-            - iOS Developer on
-            <a href="https://apps.apple.com/us/app/monese-a-banking-alternative/id1102793407" class="previous_link">
-                Monese: A Banking Alternative.
+        <div class="work-entry">
+            <div class="company-header">
+                <a href="https://monese.com/" class="company-link">Monese</a>
+                <span class="work-separator">·</span>
+                <span class="work-role">iOS Developer</span>
+                <span class="work-separator">·</span>
+                <span class="work-period">Mar 2019 - Jun 2020</span>
+            </div>
+            <p class="work-description">
+                Worked on
+                <a href="https://apps.apple.com/us/app/monese-a-banking-alternative/id1102793407">Monese: A Banking Alternative</a>.
+            </p>
+        </div>
+
+        <div class="work-entry">
+            <div class="company-header">
+                <a href="http://codeglue.com/presskit/index.php" class="company-link">Codeglue</a>
+                <span class="work-separator">·</span>
+                <span class="work-role">Game Programmer</span>
+                <span class="work-separator">·</span>
+                <span class="work-period">Aug 2018 - Jan 2019</span>
+            </div>
+            <p class="work-description">
+                Ported
+                <a href="https://www.team17.com/games/the-escapists-2/">The Escapists 2</a>
+                to iOS as
+                <a href="https://apps.apple.com/us/app/escapists-2-pocket-breakout/id1356167732">Escapists 2: Pocket Breakout</a>.
+            </p>
+        </div>
+
+        <div class="work-entry">
+            <div class="company-header">
+                <a href="http://www.mooncascade.com" class="company-link">Mooncascade</a>
+                <span class="work-separator">·</span>
+                <span class="work-role">Mobile Developer</span>
+                <span class="work-separator">·</span>
+                <span class="work-period">Aug 2016 - Jul 2018</span>
+            </div>
+            <p class="work-description">
+                Worked on the
+                <a href="https://www.telia.ee/era/lisateenused/minu-telia-app/">Minu Telia app</a>
+                and multiple unreleased & internal projects.
+            </p>
+        </div>
+
+        <div class="work-entry">
+            <div class="company-header">
+                <a href="https://rubiksdigital.com" class="company-link">Rubiks Digital</a>
+                <span class="work-separator">·</span>
+                <span class="work-role">Android Developer</span>
+                <span class="work-separator">·</span>
+                <span class="work-period">Aug 2013 - Jun 2015</span>
+            </div>
+            <p class="work-description">
+                Worked on
+                <a href="https://play.google.com/store/apps/details?id=me.fingerfolk.game">FingerFolk</a>
+                and
+                <a href="https://play.google.com/store/apps/details?id=com.rubikssolutions.sharepointconnector">Contact Sync for SharePoint</a>.
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- Side Projects -->
+    <section>
+        <h2>Side Projects</h2>
+        <div class="work-entry">
+            <div class="company-header">
+                <a href="https://ghostknot-games.itch.io/" class="company-link">Ghostknot Games</a>
+                <span class="work-separator">·</span>
+                <span class="work-period">Oct 2016 - May 2021</span>
+            </div>
+            <p class="work-description">
+                A trans-oceanic game development duo working on <strong>Escape from Aeon</strong>,
+                a modern roguelike built in Unity with ECS.
+            </p>
+        </div>
+    </section>
+
+    <!-- CV Links -->
+    <section>
+        <h2>CV</h2>
+        <div class="cv-links">
+            <a href="./cv/CV_Rauno_Villberg.docx" class="cv-button">
+                Download DOCX
             </a>
-        </p>
-
-        <p>
-            <a href="http://codeglue.com/presskit/index.php" class="company_link">Codeglue</a> (Aug 2018 - Jan 2019)
-            - Game Programmer, porting
-            <a href="https://www.team17.com/games/the-escapists-2/">The Escapists 2</a>
-            to iOS as
-            <a href="https://apps.apple.com/us/app/escapists-2-pocket-breakout/id1356167732" class="previous_link">Escapists
-                2: Pocket Breakout.</a>
-        </p>
-
-        <p>
-            <a href="http://www.mooncascade.com" class="company_link">Mooncascade</a> (Aug 2016 - Jul 2018)
-            - Mobile Developer on
-            <a href="https://www.telia.ee/era/lisateenused/minu-telia-app/" class="previous_link">Minu Telia app</a>
-            and multiple unreleased & internal projects.
-        </p>
-
-        <p>
-            <a href="https://rubiksdigital.com" class="company_link">Rubiks Digital</a> (Aug 2013 - Jun 2015)
-            - Android Developer on
-            <a href="https://play.google.com/store/apps/details?id=me.fingerfolk.game" class="previous_link">
-                FingerFolk
+            <a href="./cv/cv.html" class="cv-button secondary">
+                View HTML Version
             </a>
-            and
-            <a href="https://play.google.com/store/apps/details?id=com.rubikssolutions.sharepointconnector"
-               class="previous_link">
-                Contact Sync for SharePoint
-            </a>
+        </div>
+    </section>
+
+    <!-- Games -->
+    <section>
+        <h2>Check out these sweet games I've worked on in my spare time:</h2>
+        <p class="games-intro">
+            more @ <a href="https://mountwoolgames.itch.io/">mountwoolgames.itch.io</a>
         </p>
-    </div>
 
-    <!--Me-->
-    <br>
-    <img src="images/rauno_lidl_trek.jpg" alt="Rauno in all his glory">
+        <div class="game-embed">
+            <iframe frameborder="0"
+                    src="https://itch.io/embed/1345880?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
+                    width="620" height="167">
+                <a href="https://mountwoolgames.itch.io/ekss">Sõnur by Rauno Villberg</a>
+            </iframe>
+        </div>
 
-    <!--Spare time-->
-    <div>
-        <br>
-        <br>
-        <span class="previous_text">In my spare time:</span>
+        <div class="game-embed">
+            <iframe frameborder="0"
+                    src="https://itch.io/embed/921818?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
+                    width="620" height="167">
+                <a href="https://mountwoolgames.itch.io/bakers-migraine">BAKER'S MIGRAINE by Rauno Villberg, Anri Lihhodejevski, MrErvald</a>
+            </iframe>
+        </div>
 
-        <p>
-            <a href="https://ghostknot-games.itch.io/" class="company_link">Ghostknot Games</a> (Oct 2016 - May 2021)
-            - a trans-oceanic game development duo working on 'Escape from Aeon', a modern roguelike built in Unity with
-            ECS.
-        </p>
-    </div>
+        <div class="game-embed">
+            <iframe frameborder="0"
+                    src="https://itch.io/embed/151017?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
+                    width="620" height="167">
+                <a href="https://ghostknot-games.itch.io/efa">Escape from Aeon by Ghostknot Games, Rauno Villberg</a>
+            </iframe>
+        </div>
 
-    <br>
-    <a href="./cv/CV_Rauno_Villberg.docx">
-        Download my CV as a DOCX file.
-    </a>
-    <br>
-    <a href="./cv/cv.html">
-        Or view the WIP html version.
-    </a>
+        <div class="game-embed">
+            <iframe frameborder="0"
+                    src="https://itch.io/embed/723099?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
+                    width="620" height="167">
+                <a href="https://mountwoolgames.itch.io/rewind-tallinn">Rollback: Tallinn 1993 by Rauno Villberg, Joonas Ervald</a>
+            </iframe>
+        </div>
 
-</div>
-
-<div>
-    <br>
-    <p>Check out these sweet games I've worked on in my spare time:</p>
-    <a href="https://mountwoolgames.itch.io/">Visit my itch.io page at mountwoolgames.itch.io</a>
-    <!--itch.io embeds-->
-    <div>
-        <iframe frameborder="0"
-                src="https://itch.io/embed/1345880?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
-                width="620" height="167">
-            <a href="https://mountwoolgames.itch.io/ekss">Sõnur by Rauno Villberg</a>
-        </iframe>
-    </div>
-    <div>
-        <iframe frameborder="0"
-                src="https://itch.io/embed/921818?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
-                width="620" height="167"><a href="https://mountwoolgames.itch.io/bakers-migraine">BAKER'S MIGRAINE by
-            Rauno Villberg, Anri Lihhodejevski, MrErvald</a>
-        </iframe>
-    </div>
-    <div>
-        <iframe frameborder="0"
-                src="https://itch.io/embed/151017?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
-                width="620" height="167"><a href="https://ghostknot-games.itch.io/efa">Escape from Aeon by Ghostknot
-            Games,
-            Rauno Villberg</a></iframe>
-    </div>
-    <div>
-        <iframe frameborder="0"
-                src="https://itch.io/embed/723099?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
-                width="620" height="167"><a href="https://mountwoolgames.itch.io/rewind-tallinn">Rollback: Tallinn 1993
-            by
-            Rauno Villberg, Joonas Ervald</a></iframe>
-        <div>
+        <div class="game-embed">
             <iframe frameborder="0"
                     src="https://itch.io/embed/731128?bg_color=191919&amp;fg_color=c4c4c4&amp;link_color=fb5757&amp;border_color=474747"
-                    width="620" height="167"><a href="https://mountwoolgames.itch.io/art">Video Games are Art®:
-                Performance
-                Art® by Rauno Villberg</a></iframe>
+                    width="620" height="167">
+                <a href="https://mountwoolgames.itch.io/art">Video Games are Art®: Performance Art® by Rauno Villberg</a>
+            </iframe>
         </div>
+    </section>
+
+    <!-- Footer Image -->
+    <div class="footer-image">
+        <img src="images/rauno_with_bike.jpg" alt="Rauno Villberg">
+        <p class="footer-signoff">... peace out & keep it wavy!</p>
     </div>
 </div>
 </body>
