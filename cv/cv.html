@@ -18,11 +18,11 @@
     
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 11px;
-      line-height: 1.4;
-      background: #ffffff;
-      color: #333333;
-      padding: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      background: #f5f5f5;
+      color: #000000;
+      padding: 20px;
       margin: 0;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -33,8 +33,7 @@
       min-height: 297mm;
       margin: 0 auto;
       background: #ffffff;
-      padding: 15mm 12mm;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     
     .cv-table {
@@ -45,39 +44,36 @@
     
     .cv-table td {
       vertical-align: top;
-      padding: 0;
+      padding: 20px;
     }
     
     .left-column {
-      width: 32%;
-      padding-right: 8px;
-      border-right: 2px solid #333333;
+      width: 33%;
+      background: #f8f8f8;
+      border-right: 1px solid #e0e0e0;
     }
     
     .right-column {
-      width: 68%;
-      padding-left: 12px;
+      width: 67%;
+      background: #ffffff;
     }
     
-    /* Name styling */
     .name {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 700;
-      color: #333333;
-      margin-bottom: 20px;
+      color: #000000;
+      margin-bottom: 25px;
       letter-spacing: -0.5px;
-      text-transform: uppercase;
     }
     
-    /* Section titles */
     .section-title {
-      font-size: 11px;
+      font-size: 15px;
       font-weight: 700;
-      color: #333333;
-      margin: 16px 0 10px 0;
+      color: #000000;
+      margin: 18px 0 10px 0;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #333333;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #cccccc;
       padding-bottom: 4px;
     }
     
@@ -85,37 +81,36 @@
       margin-top: 0;
     }
     
-    /* Left column content */
     .skill-item {
-      font-size: 11px;
-      color: #333333;
-      margin: 4px 0;
+      font-size: 16px;
+      color: #000000;
+      margin: 5px 0;
       line-height: 1.5;
     }
     
     .school-name {
-      font-size: 11px;
+      font-size: 16px;
       font-weight: 600;
-      color: #333333;
-      margin: 8px 0 2px 0;
+      color: #000000;
+      margin: 10px 0 3px 0;
     }
     
     .school-details {
-      font-size: 10px;
-      color: #666666;
+      font-size: 15px;
+      color: #333333;
       margin: 2px 0;
       line-height: 1.4;
     }
     
     .contact-info {
-      font-size: 10px;
-      margin: 6px 0;
-      color: #666666;
+      font-size: 15px;
+      margin: 5px 0;
+      color: #333333;
       word-break: break-word;
     }
     
     .contact-info a {
-      color: #333333;
+      color: #000000;
       text-decoration: none;
       font-weight: 500;
     }
@@ -125,25 +120,24 @@
     }
     
     .spacer {
-      margin: 12px 0;
+      margin: 15px 0;
     }
     
-    /* Right column styles */
     .experience-title {
-      font-size: 11px;
+      font-size: 15px;
       font-weight: 700;
-      color: #333333;
-      margin: 0 0 12px 0;
+      color: #000000;
+      margin: 0 0 15px 0;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #333333;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #cccccc;
       padding-bottom: 4px;
     }
     
     .job-header {
-      font-size: 11px;
+      font-size: 16px;
       font-weight: 700;
-      color: #333333;
+      color: #000000;
       margin-bottom: 4px;
       display: flex;
       justify-content: space-between;
@@ -152,56 +146,60 @@
     
     .company-name {
       font-weight: 700;
-      color: #333333;
+      color: #000000;
     }
     
     .job-date {
       font-weight: 500;
       color: #666666;
-      font-size: 10px;
+      font-size: 15px;
       text-align: right;
     }
     
     .job-title {
-      font-size: 11px;
+      font-size: 16px;
       font-weight: 600;
-      color: #333333;
-      margin-bottom: 6px;
+      color: #000000;
+      margin-bottom: 8px;
       font-style: italic;
     }
     
     .job-details {
-      font-size: 10px;
-      color: #555555;
+      font-size: 15px;
+      color: #333333;
       line-height: 1.5;
       margin-bottom: 3px;
     }
     
     .job-details .arrow {
-      color: #333333;
+      color: #000000;
       font-weight: 600;
       margin-right: 4px;
     }
     
     .job-spacer {
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
     
-    /* Print styles */
     @media print {
       body {
         background: #ffffff;
+        padding: 0;
       }
       .cv-container {
         box-shadow: none;
-        padding: 10mm 8mm;
+      }
+      .left-column {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
     }
     
-    /* Responsive */
     @media screen and (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
       .cv-container {
-        padding: 20px;
         max-width: 100%;
       }
       .cv-table {
@@ -214,12 +212,10 @@
       .left-column, .right-column {
         width: 100%;
         border-right: none;
-        padding: 0;
+        padding: 15px;
       }
       .left-column {
-        border-bottom: 2px solid #333333;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
       }
     }
   </style>
