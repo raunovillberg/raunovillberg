@@ -18,14 +18,29 @@
 </nav>
 
 <div class="wrapper">
-  <iframe
-    class="strava-embed"
-    height="600"
-    frameborder="0"
-    allowtransparency="true"
-    scrolling="no"
-    src="https://www.strava.com/athletes/2128781/latest-rides/33e869a95c70cf0afd227508b1cfc36f4676e5fd"
-  ></iframe>
+  <div class="strava-container">
+    <div id="strava-loader" class="strava-loader" role="status" aria-live="polite">
+      <div class="strava-spinner"></div>
+      <p>Loading rides...</p>
+    </div>
+    <iframe
+      id="strava-embed"
+      class="strava-embed"
+      height="600"
+      frameborder="0"
+      allowtransparency="true"
+      scrolling="no"
+      src="https://www.strava.com/athletes/2128781/latest-rides/33e869a95c70cf0afd227508b1cfc36f4676e5fd"
+    ></iframe>
+  </div>
+
+<script>
+  document.getElementById('strava-embed').addEventListener('load', function() {
+    const loader = document.getElementById('strava-loader');
+    loader.classList.add('hidden');
+    loader.setAttribute('aria-hidden', 'true');
+  });
+</script>
 </div>
 
 </body>
