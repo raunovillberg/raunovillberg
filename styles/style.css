@@ -29,30 +29,9 @@ body {
   position: relative;
 }
 
-/* Mobile menu toggle */
+/* Mobile menu toggle - removed as nav stays visible on top */
 .nav-toggle {
   display: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  background: none;
-  border: none;
-  color: #a1a1aa;
-  font-size: 1.5rem;
-  padding: 1rem;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.nav-toggle:hover,
-.nav-toggle:focus {
-  color: #f4f4f5;
-  outline: none;
-}
-
-.nav-toggle:focus-visible {
-  outline: 2px solid #667eea;
-  outline-offset: 2px;
 }
 
 .nav-list {
@@ -74,7 +53,6 @@ body {
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
 .nav-link:hover,
@@ -92,80 +70,6 @@ body {
   color: #f4f4f5;
 }
 
-.nav-item:not(.has-dropdown) > .nav-link.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
-  right: 1rem;
-  height: 2px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 1px;
-}
-
-.nav-item.has-dropdown > .nav-link.active {
-  color: #f4f4f5;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.nav-item.has-dropdown > .nav-link::after {
-  content: " ▾";
-  font-size: 0.8em;
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  min-width: 150px;
-  list-style: none;
-  padding: 0.5rem 0;
-  margin: 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Only animate on hover, not on page load */
-.nav-item.has-dropdown:hover > .dropdown,
-.dropdown.dropdown-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-}
-
-.dropdown li {
-  margin: 0;
-}
-
-.dropdown a {
-  display: block;
-  padding: 0.6rem 1.2rem;
-  color: #a1a1aa;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.15s ease;
-}
-
-.dropdown a:hover,
-.dropdown a:focus {
-  background: rgba(102, 126, 234, 0.2);
-  color: #f4f4f5;
-  outline: none;
-}
-
-.dropdown a:focus-visible {
-  background: rgba(102, 126, 234, 0.2);
-  color: #f4f4f5;
-  outline: 2px solid #667eea;
-  outline-offset: -2px;
-}
-
 .wrapper {
   max-width: 800px;
   margin: 0 auto;
@@ -179,8 +83,6 @@ section {
   border-radius: 16px;
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
   overflow: hidden;
 }
 
@@ -200,8 +102,6 @@ section > .cv-links {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
 }
 
 .current-work, .profile-section {
@@ -213,13 +113,6 @@ section > .cv-links {
   padding-top: 1rem;
 }
 
-section:nth-child(2) { animation-delay: 0.1s; }
-section:nth-child(3) { animation-delay: 0.2s; }
-.previous-section { animation-delay: 0.3s; }
-section:nth-child(5) { animation-delay: 0.4s; }
-
-.current-profile-container { animation-delay: 0.1s; }
-
 section h2 {
   font-size: 1.4rem;
   font-weight: 600;
@@ -228,10 +121,6 @@ section h2 {
   align-items: center;
   gap: 0.75rem;
   color: #f4f4f5;
-}
-
-section h2 .emoji {
-  font-size: 1.6rem;
 }
 
 /* Intro text */
@@ -249,7 +138,6 @@ section h2 .emoji {
   color: #60a5fa;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
 .intro a:hover {
@@ -262,7 +150,6 @@ section h2 .emoji {
   padding: 1.25rem 2rem;
   margin-bottom: 0;
   background: rgba(255, 255, 255, 0.02);
-  transition: all 0.3s ease;
 }
 
 .work-entry:not(:last-child) {
@@ -295,7 +182,6 @@ section h2 .emoji {
   text-decoration: none;
   font-weight: 600;
   font-size: 1.15rem;
-  transition: color 0.2s ease;
 }
 
 .company-link:hover {
@@ -305,6 +191,19 @@ section h2 .emoji {
 
 .work-separator {
   display: none;
+}
+
+/* Strava Embed */
+.strava-embed {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+}
+.strava-header {
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .work-period {
@@ -331,7 +230,6 @@ section h2 .emoji {
 .work-description a {
   color: #fbbf24;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .work-description a:hover {
@@ -364,7 +262,6 @@ section h2 .emoji {
 .work-details a {
   color: #fbbf24;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .work-details a:hover {
@@ -387,7 +284,6 @@ section h2 .emoji {
   width: 100%;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-image img:hover {
@@ -413,7 +309,6 @@ section h2 .emoji {
   text-decoration: none;
   border-radius: 10px;
   font-weight: 500;
-  transition: all 0.3s ease;
 }
 
 .cv-button:hover {
@@ -440,7 +335,6 @@ section h2 .emoji {
   color: #60a5fa;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
 .games-intro a:hover {
@@ -453,7 +347,6 @@ section h2 .emoji {
   border-radius: 12px;
   overflow: hidden;
   background: #1a1a2e;
-  transition: transform 0.3s ease;
 }
 
 .game-embed:hover {
@@ -465,91 +358,15 @@ section h2 .emoji {
   display: block;
 }
 
-/* Animations */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-  .nav-toggle {
-    display: block;
-  }
-
-  .nav-list {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background: #1a1a1a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0 0 12px 12px;
-    padding: 0.5rem 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.2s ease;
-    opacity: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-
-  .nav-list.nav-open {
-    max-height: 500px;
-    opacity: 1;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
-
   .nav-link {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.95rem;
-  }
-
-  .dropdown {
-    position: static;
-    opacity: 0;
-    visibility: hidden;
-    transform: none;
-    border: none;
-    border-radius: 0;
-    background: rgba(0, 0, 0, 0.2);
-    min-width: 100%;
-    box-shadow: none;
-    padding-left: 1.5rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .dropdown.dropdown-open {
-    opacity: 1;
-    visibility: visible;
-    max-height: 200px;
-  }
-
-  .dropdown a {
-    padding: 0.5rem 1.5rem;
+    padding: 0.875rem 1.25rem;
     font-size: 0.9rem;
+  }
+
+  .nav-inner {
+    padding: 0 0.5rem;
   }
 
   .wrapper {
@@ -584,9 +401,6 @@ section h2 .emoji {
   text-align: center;
   padding: 2rem 0;
   margin-top: 2rem;
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
-  animation-delay: 0.5s;
 }
 
 .footer-image img {
@@ -606,17 +420,4 @@ section h2 .emoji {
   .footer-image img {
     max-width: 300px;
   }
-}
-
-/* Strava Embed */
-.strava-embed {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
-  border-radius: 12px;
-}
-.strava-header {
-  margin-bottom: 2rem;
-  text-align: center;
 }
