@@ -148,6 +148,38 @@
             padding: 15px;
             background-color: #1a1a1a;
             border-top: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #export-options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        #export-options label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #999;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #export-options select {
+            width: 100%;
+            background-color: #141414;
+            color: #eee;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+
+        #export-options select:focus {
+            outline: 2px solid #2a4a7a;
+            border-color: #2a4a7a;
         }
 
         #export-container button {
@@ -277,6 +309,15 @@
             <div id="history-list"></div>
         </div>
         <div id="export-container">
+            <div id="export-options">
+                <label for="export-target">EXPORT FOR</label>
+                <select id="export-target">
+                    <option value="ios">iOS app icons</option>
+                    <option value="android">Android app icons</option>
+                    <option value="macos">macOS app icons</option>
+                    <option value="favicon">webpage favicons</option>
+                </select>
+            </div>
             <button id="export-button">EXPORT ZIP</button>
         </div>
     </div>
@@ -336,6 +377,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             seed: 'ABC123DEF456',
             style: 'bauhaus',
             palette: 0,
+            exportTarget: 'ios',
             params: {
                 stroke: 10,
                 chaos: 1.0,
@@ -783,64 +825,223 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             });
         }
 
-        async function exportZip() {
-            const zip = new JSZip();
-            const sizes = [1024, 512, 128, 32];
-            
-            // Generate the current SVG content
-            let svgContent = '';
+        function getCurrentSvgContent() {
             switch (appState.style) {
                 case 'bauhaus':
-                    svgContent = generateBauhaus();
-                    break;
+                    return generateBauhaus();
                 case 'truchet':
-                    svgContent = generateTruchet();
-                    break;
+                    return generateTruchet();
                 case 'modernist':
-                    svgContent = generateModernist();
-                    break;
+                    return generateModernist();
                 case 'brutalism':
-                    svgContent = generateBrutalism();
-                    break;
+                    return generateBrutalism();
                 case 'swiss':
-                    svgContent = generateSwiss();
-                    break;
+                    return generateSwiss();
                 case 'cyberpunk':
-                    svgContent = generateCyberpunk();
-                    break;
+                    return generateCyberpunk();
                 case 'medieval':
-                    svgContent = generateMedieval();
-                    break;
+                    return generateMedieval();
                 case 'neon':
-                    svgContent = generateNeon();
-                    break;
+                    return generateNeon();
                 case 'comic':
-                    svgContent = generateComic();
-                    break;
+                    return generateComic();
                 case 'geometric':
-                    svgContent = generateGeometric();
-                    break;
+                    return generateGeometric();
+                default:
+                    return generateBauhaus();
             }
-            
-            // Add PNG files for each size
-            for (let s of sizes) {
-                const blob = await svgToBlob(svgContent, s);
-                zip.file(`icon-${s}.png`, blob);
+        }
+
+        function formatAppleSize(size) {
+            return Number.isInteger(size) ? size.toString() : size.toFixed(1);
+        }
+
+        async function exportAppleAppIconSet(zip, svgContent, entries, folderName) {
+            const folder = zip.folder(folderName);
+            const images = [];
+
+            for (const entry of entries) {
+                const sizeLabel = formatAppleSize(entry.size);
+                const filename = `icon-${sizeLabel}x${sizeLabel}@${entry.scale}x.png`;
+                const pixelSize = Math.round(entry.size * entry.scale);
+                const blob = await svgToBlob(svgContent, pixelSize);
+
+                if (blob) {
+                    folder.file(filename, blob);
+                    images.push({
+                        size: `${sizeLabel}x${sizeLabel}`,
+                        idiom: entry.idiom,
+                        scale: `${entry.scale}x`,
+                        filename
+                    });
+                }
             }
-            
-            // Add metadata
+
+            folder.file('Contents.json', JSON.stringify({
+                images,
+                info: {
+                    version: 1,
+                    author: 'xcode'
+                }
+            }, null, 2));
+        }
+
+        async function exportAndroidIcons(zip, svgContent) {
+            const densities = [
+                { name: 'mdpi', size: 48 },
+                { name: 'hdpi', size: 72 },
+                { name: 'xhdpi', size: 96 },
+                { name: 'xxhdpi', size: 144 },
+                { name: 'xxxhdpi', size: 192 }
+            ];
+
+            for (const density of densities) {
+                const folder = zip.folder(`android/res/mipmap-${density.name}`);
+                const blob = await svgToBlob(svgContent, density.size);
+                if (blob) {
+                    folder.file('ic_launcher.png', blob);
+                    folder.file('ic_launcher_round.png', blob);
+                }
+            }
+        }
+
+        async function exportFavicons(zip, svgContent) {
+            const faviconFolder = zip.folder('favicons');
+            const sizes = [16, 32, 48, 96, 180, 192, 512];
+            const nameMap = {
+                16: 'favicon-16x16.png',
+                32: 'favicon-32x32.png',
+                48: 'favicon-48x48.png',
+                96: 'favicon-96x96.png',
+                180: 'apple-touch-icon.png',
+                192: 'android-chrome-192x192.png',
+                512: 'android-chrome-512x512.png'
+            };
+
+            for (const size of sizes) {
+                const blob = await svgToBlob(svgContent, size);
+                if (blob) {
+                    faviconFolder.file(nameMap[size], blob);
+                }
+            }
+
+            faviconFolder.file('site.webmanifest', JSON.stringify({
+                name: 'Icon-O-Matic',
+                short_name: 'Icon-O-Matic',
+                icons: [
+                    { src: 'android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+                    { src: 'android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
+                ],
+                theme_color: '#111111',
+                background_color: '#111111',
+                display: 'standalone'
+            }, null, 2));
+        }
+
+        async function exportZip() {
+            const zip = new JSZip();
+            const svgContent = getCurrentSvgContent();
+            const exportTarget = appState.exportTarget || 'ios';
+
+            try {
+                if (exportTarget === 'ios') {
+                    const entries = [
+                        { size: 20, scale: 2, idiom: 'iphone' },
+                        { size: 20, scale: 3, idiom: 'iphone' },
+                        { size: 29, scale: 2, idiom: 'iphone' },
+                        { size: 29, scale: 3, idiom: 'iphone' },
+                        { size: 40, scale: 2, idiom: 'iphone' },
+                        { size: 40, scale: 3, idiom: 'iphone' },
+                        { size: 60, scale: 2, idiom: 'iphone' },
+                        { size: 60, scale: 3, idiom: 'iphone' },
+                        { size: 20, scale: 1, idiom: 'ipad' },
+                        { size: 20, scale: 2, idiom: 'ipad' },
+                        { size: 29, scale: 1, idiom: 'ipad' },
+                        { size: 29, scale: 2, idiom: 'ipad' },
+                        { size: 40, scale: 1, idiom: 'ipad' },
+                        { size: 40, scale: 2, idiom: 'ipad' },
+                        { size: 76, scale: 1, idiom: 'ipad' },
+                        { size: 76, scale: 2, idiom: 'ipad' },
+                        { size: 83.5, scale: 2, idiom: 'ipad' },
+                        { size: 1024, scale: 1, idiom: 'ios-marketing' }
+                    ];
+                    await exportAppleAppIconSet(zip, svgContent, entries, 'iOS/AppIcon.appiconset');
+                } else if (exportTarget === 'android') {
+                    await exportAndroidIcons(zip, svgContent);
+                } else if (exportTarget === 'macos') {
+                    const entries = [
+                        { size: 16, scale: 1, idiom: 'mac' },
+                        { size: 16, scale: 2, idiom: 'mac' },
+                        { size: 32, scale: 1, idiom: 'mac' },
+                        { size: 32, scale: 2, idiom: 'mac' },
+                        { size: 128, scale: 1, idiom: 'mac' },
+                        { size: 128, scale: 2, idiom: 'mac' },
+                        { size: 256, scale: 1, idiom: 'mac' },
+                        { size: 256, scale: 2, idiom: 'mac' },
+                        { size: 512, scale: 1, idiom: 'mac' },
+                        { size: 512, scale: 2, idiom: 'mac' }
+                    ];
+                    await exportAppleAppIconSet(zip, svgContent, entries, 'macOS/AppIcon.appiconset');
+                } else if (exportTarget === 'favicon') {
+                    await exportFavicons(zip, svgContent);
+                }
+            } catch (err) {
+                console.error('Error during SVG to Blob conversion:', err);
+                throw err;
+            }
+
             zip.file("metadata.json", JSON.stringify({
                 ...appState,
                 exportedAt: new Date().toISOString()
             }));
-            
-            // Generate and download ZIP
+
             const content = await zip.generateAsync({type: "blob"});
+
+            const filename = `${exportTarget}-icons-${appState.seed}.zip`;
+
+            // Best effort on mobile: use Web Share API if available (works well on iOS)
+            try {
+                const file = new File([content], filename, { type: 'application/zip' });
+                if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
+                    await navigator.share({
+                        files: [file],
+                        title: 'Icon export',
+                        text: 'Exported icons.zip'
+                    });
+                    showToast('Export ready — shared as a file.');
+                    return;
+                }
+            } catch (e) {
+                // Ignore and fall back to link download
+            }
+
+            // Fallback: try a classic <a download> blob URL
             const link = document.createElement("a");
-            link.href = URL.createObjectURL(content);
-            link.download = `icons-${appState.seed}.zip`;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+
+            const url = URL.createObjectURL(content);
+            link.href = url;
+            link.download = filename;
+
+            // Programmatic click
             link.click();
-            URL.revokeObjectURL(link.href);
+
+            // NOTE: On iOS (incl. Firefox on iPhone), revoking the Blob URL too quickly
+            // can cancel the navigation/download mid-flight. Keep it alive longer.
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            if (isIOS) {
+                // Some iOS browsers ignore the download attribute; opening the blob URL
+                // gives the user a chance to use the system share sheet.
+                showToast('If the download doesn\'t start: use Share → Save to Files.');
+            }
+
+            setTimeout(() => {
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }, isIOS ? 60000 : 2000);
         }
 
         // ============================================================
@@ -1269,6 +1470,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                 historyContainer.classList.toggle('collapsed');
             });
 
+            const exportTargetSelect = document.getElementById('export-target');
+            exportTargetSelect.value = appState.exportTarget;
+            exportTargetSelect.addEventListener('change', () => {
+                appState.exportTarget = exportTargetSelect.value;
+                updateHash();
+            });
+
             // Initialize pinned export button
             const exportBtn = document.getElementById('export-button');
             exportBtn.addEventListener('click', async () => {
@@ -1302,6 +1510,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                     appState.seed = state.seed || generateRandomSeed();
                     appState.style = state.style || 'bauhaus';
                     appState.palette = state.palette !== undefined ? state.palette : 0;
+                    appState.exportTarget = state.exportTarget || appState.exportTarget;
                     if (state.params) {
                         appState.params.stroke = state.params.stroke || 10;
                         appState.params.chaos = state.params.chaos || 1.0;
@@ -1357,6 +1566,11 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             if (!loadFromHash()) {
                 // Generate a random seed if no hash
                 appState.seed = generateRandomSeed();
+            }
+
+            const exportTargetSelect = document.getElementById('export-target');
+            if (exportTargetSelect) {
+                exportTargetSelect.value = appState.exportTarget;
             }
             
             pane.refresh();
