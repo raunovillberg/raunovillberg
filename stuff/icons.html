@@ -18,7 +18,7 @@
             overflow: hidden;
             height: 100vh;
             display: flex;
-            font-size: 2rem;
+            flex-direction: row;
         }
 
         #sidebar {
@@ -27,7 +27,7 @@
             border-right: 1px solid #333;
             overflow-y: auto;
             flex-shrink: 0;
-            z-index: 10;
+            z-index: 100;
             display: flex;
             flex-direction: column;
         }
@@ -36,6 +36,7 @@
         #pane-container {
             flex: 1;
             overflow-y: auto;
+            min-height: 0;
         }
 
         /* Force font size on Tweakpane labels, inputs, and buttons */
@@ -45,13 +46,13 @@
         #pane-container .tp-btnv_t,
         #pane-container .tp-fldv_t,
         #pane-container .tp-sltv_s {
-            font-size: 18px !important;
+            font-size: 14px !important;
         }
 
         /* Ensure container unit size is used for height */
         #sidebar {
-            --tp-base-font-size: 18px !important;
-            --tp-container-unit-size: 34px !important;
+            --tp-base-font-size: 14px !important;
+            --tp-container-unit-size: 28px !important;
         }
 
         /* History List Container */
@@ -60,25 +61,50 @@
             border-bottom: 1px solid #333;
             display: flex;
             flex-direction: column;
-            max-height: 200px;
             flex-shrink: 0;
         }
 
         #history-list-header {
-            padding: 10px 15px;
-            font-size: 12px;
+            padding: 8px 15px;
+            font-size: 11px;
             font-weight: 600;
-            color: #666;
+            color: #999;
             text-transform: uppercase;
             letter-spacing: 1px;
-            background-color: #1a1a1a;
-            border-bottom: 1px solid #333;
+            background-color: #252525;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        #history-list-header:hover {
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        #history-list-header::after {
+            content: '▼';
+            font-size: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        #history-list-container.collapsed #history-list-header::after {
+            transform: rotate(-90deg);
         }
 
         #history-list {
             overflow-y: auto;
             flex: 1;
             background-color: #1a1a1a;
+            max-height: 300px;
+            transition: max-height 0.2s ease-out;
+        }
+
+        #history-list-container.collapsed #history-list {
+            max-height: 0;
+            overflow: hidden;
         }
 
         .history-item {
@@ -129,11 +155,11 @@
             background-color: #1D3557;
             color: white;
             border: none;
-            padding: 16px;
+            padding: 12px;
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 22px;
+            font-size: 14px;
         }
 
         #export-container button:hover {
@@ -175,66 +201,70 @@
             opacity: 1;
         }
 
-        .mobile-settings-toggle {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #666;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 100;
-        }
-
         .tp-dfv {
             --tp-base-background-color: #1a1a1a;
             --tp-base-shadow-color: rgba(0,0,0,0.5);
         }
 
         @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
             #sidebar {
-                position: fixed;
-                left: 0;
-                right: 0;
-                bottom: 0;
                 width: 100%;
                 height: 50vh;
-                transform: translateY(100%);
-                transition: transform 0.3s ease;
+                order: 2;
                 border-right: none;
                 border-top: 1px solid #333;
-            }
-
-            #sidebar.sidebar-visible {
-                transform: translateY(0);
-            }
-
-            #history-tray {
-                left: 0;
-                padding-bottom: 20px;
-                height: 140px;
-            }
-            
-            #history-tray .history-item {
-                width: 70px;
-                height: 70px;
-            }
-
-            .mobile-settings-toggle {
-                display: block;
+                background-color: #1a1a1a;
             }
 
             #canvas-container {
-                padding-bottom: 20px;
+                width: 100%;
+                height: 50vh;
+                order: 1;
+                padding: 0;
+                background-color: #111;
             }
-            
-            #history-list-container {
-                max-height: 150px;
+
+            #canvas-container svg {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                padding: 20px;
+            }
+
+            /* Landscape mode on mobile */
+            @media (orientation: landscape) {
+                body {
+                    flex-direction: row;
+                }
+
+                #sidebar {
+                    width: 45%;
+                    height: 100vh;
+                    order: 1;
+                    border-top: none;
+                    border-right: 1px solid #333;
+                }
+
+                #canvas-container {
+                    width: 55%;
+                    height: 100vh;
+                    order: 2;
+                    display: flex;
+                    justify-content: flex-end; /* Align to right edge */
+                    align-items: center;
+                }
+
+                #canvas-container svg {
+                    width: auto;
+                    height: 90vh;
+                    padding: 0;
+                    margin-right: 0; /* Remove right padding */
+                }
             }
         }
     </style>
@@ -243,7 +273,7 @@
     <div id="sidebar">
         <div id="pane-container"></div>
         <div id="history-list-container">
-            <div id="history-list-header">HISTORY</div>
+            <div id="history-list-header"><span>HISTORY</span></div>
             <div id="history-list"></div>
         </div>
         <div id="export-container">
@@ -253,7 +283,6 @@
     <div id="canvas-container">
         <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" id="main-canvas"></svg>
     </div>
-    <button class="mobile-settings-toggle" id="mobile-toggle">SETTINGS</button>
 
 <script>
 /*! Tweakpane 3.1.9 (c) 2016 cocopon, licensed under the MIT license. */
@@ -957,7 +986,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                 item.appendChild(timestamp);
                 item.appendChild(styleTag);
                 
-                item.addEventListener('click', () => restoreFromHistory(originalIndex));
+                item.addEventListener('click', () => {
+                    restoreFromHistory(originalIndex);
+                });
                 list.appendChild(item);
             });
 
@@ -1227,11 +1258,15 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         // ============================================================
 
         function initializeMobileToggle() {
-            const toggle = document.getElementById('mobile-toggle');
-            const sidebar = document.getElementById('sidebar');
+            // Initialize History Collapsible
+            const historyContainer = document.getElementById('history-list-container');
+            const historyHeader = document.getElementById('history-list-header');
             
-            toggle.addEventListener('click', () => {
-                sidebar.classList.toggle('sidebar-visible');
+            // Default to collapsed
+            historyContainer.classList.add('collapsed');
+            
+            historyHeader.addEventListener('click', () => {
+                historyContainer.classList.toggle('collapsed');
             });
 
             // Initialize pinned export button
